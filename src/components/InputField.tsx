@@ -55,12 +55,24 @@ export const InputField: React.FC<InputFieldProps> = ({
         }}
         onKeyDown={(e) => {
           if (e.code === "Enter") {
-            addTask(userInput);
+            if (userInput) {
+              addTask(userInput);
+            }
             (e.target as EventTarget & HTMLInputElement).value = "";
           }
         }}
       ></input>
-      <img src={enterPng} alt="" className="h-[50px]" />
+      <img
+        src={enterPng}
+        alt=""
+        className="h-[50px] cursor-pointer"
+        onClick={() => {
+          if (userInput) {
+            addTask(userInput);
+          }
+          setUserInput("");
+        }}
+      />
     </div>
   );
 };
